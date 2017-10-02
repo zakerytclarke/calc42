@@ -1,0 +1,255 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>
+Calc 42
+</title>    
+<style>
+.row{
+height:9%;
+width:100%;
+}
+.button{
+width:24%;
+height:100%;
+font-size:30px;
+}
+.listbox{
+  border:1px solid #000;
+  font-family:arial;
+  height:17%;
+  width:100%;
+}
+ul{
+  list-style:none;
+  max-height:100px;
+  margin:0;
+  overflow:auto;
+  padding:0;
+  text-indent:10px;
+}
+li{
+  line-height:25px;
+}
+li:nth-child(even){
+  background:#ccc;
+}
+h1{
+margin:0;
+height:7.5%;
+}
+</style>
+</head> 
+<body>
+<div style="width:100vw; height:100vh;">
+<div class="listbox">
+<ul id="output">
+
+</ul>
+</div>
+<h1 style="" id="input">0</h1>
+<h1 style="" id ="out">> </h1>
+<div class="row">
+<button onclick="updatecalc(this.innerHTML)" class="button">!</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">?</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">@</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">$</button>
+</div>
+<div class="row">
+<button onclick="updatecalc(this.innerHTML)" class="button">1</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">2</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">3</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">+</button>
+</div>
+<div class="row">
+<button onclick="updatecalc(this.innerHTML)" class="button">4</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">5</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">6</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">-</button>
+</div>
+<div class="row">
+<button onclick="updatecalc(this.innerHTML)" class="button">7</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">8</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">9</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">*</button>
+</div>
+<div class="row">
+<button onclick="updatecalc(this.innerHTML)" class="button">.</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">0</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">^</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">/</button>
+</div>
+<div class="row">
+<button onclick="updatecalc(this.innerHTML)" class="button">:</button>
+<button onclick="updatecalc(this.innerHTML)" class="button" style="width:48.5%;">Space</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">;</button>
+</div>
+<div class="row">
+<button onclick="updatecalc(this.innerHTML)" class="button"><</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">=</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">></button>
+<button onclick="updatecalc(this.innerHTML)" class="button">Del</button>
+</div>
+
+<script>
+var stackout=[];
+var varmem=[0];
+var x=0;
+while(x<999){
+varmem.length++;
+varmem[x]="0";
+x++;
+}
+renderstack();
+function updatecalc(i){
+	if(isNaN(i)&&i!="."){
+		evaluate(i);
+	}else{ 
+		document.getElementById("input").innerHTML=document.getElementById("input").innerHTML+i;
+	}
+}
+function evaluate(i){
+	if(i=="Space"){
+		additem(parseFloat(document.getElementById("input").innerHTML));
+		document.getElementById("input").innerHTML="0";
+		renderstack();
+	}
+	if(i=="+"){
+		var arg1=getitem(0);
+		deleteitem();
+		var arg2=getitem(0);
+		deleteitem();
+		additem(arg1+arg2);
+		renderstack();
+	}
+	if(i=="-"){
+		var arg1=getitem(0);
+		deleteitem();
+		var arg2=getitem(0);
+		deleteitem();
+		additem(arg2-arg1);
+		renderstack();
+	}
+	if(i=="*"){
+		var arg1=getitem(0);
+		deleteitem();
+		var arg2=getitem(0);
+		deleteitem();
+		additem(arg2*arg1);
+		renderstack();
+	}
+	if(i=="/"){
+		var arg1=getitem(0);
+		deleteitem();
+		var arg2=getitem(0);
+		deleteitem();
+		additem(arg2/arg1);
+		renderstack();
+	}
+
+	if(i=="!"){
+		var arg1=getitem(0); 
+		document.getElementById("out").innerHTML=document.getElementById("out").innerHTML+arg1;
+		renderstack();
+	}
+	if(i=="^"){
+		var arg1=getitem(0);
+		deleteitem();
+		var arg2=getitem(0);
+		deleteitem();
+		additem(Math.pow(arg2,arg1));
+		renderstack();
+	}
+	if(i=="Del"){
+		document.getElementById("input").innerHTML="";
+		deleteitem();
+		renderstack();		
+	}
+	if(i=="<"){
+		var arg1=getitem(0);
+		deleteitem();
+		var arg2=getitem(0);
+		deleteitem();
+		if(arg1>arg2){
+			additem(1);
+		}else{
+			additem(0);
+		}
+		renderstack();
+	}
+	if(i=="="){
+		var arg1=getitem(0);
+		deleteitem();
+		var arg2=getitem(0);
+		deleteitem();
+		if(arg1==arg2){
+			additem(1);
+		}else{
+			additem(0);
+		}
+		renderstack();		
+	}
+	if(i==">"){
+		var arg1=getitem(0);
+		deleteitem();
+		var arg2=getitem(0);
+		deleteitem();
+		if(arg1<arg2){
+			additem(1);
+		}else{
+			additem(0);
+		}
+		renderstack();		
+	}
+	if(i=="@"){
+		var arg1=getitem(0);
+		deleteitem();
+		var arg2=getitem(0);
+		varmem[arg1]=arg2;
+		renderstack();	
+	}
+	if(i=="$"){
+		var arg1=getitem(0);
+		deleteitem();
+		additem(varmem[arg1]);
+		renderstack();	
+	}
+	
+
+}
+function deleteitem(){
+	var c=0;
+	while(c<stackout.length){
+		stackout[c]=stackout[c+1];
+		c++;
+	}
+	stackout.length--;
+}
+function additem(item){
+	stackout.length++;
+	var c = stackout.length-1;
+	while(c>0){
+		stackout[c]=stackout[c-1];
+		c--;
+	}
+	stackout[0]=item;
+}
+function getitem(index){
+	return stackout[index];
+}
+function renderstack(){
+	document.getElementById("output").innerHTML="";
+	var c=0;
+	var o;
+	while(c<stackout.length){
+		o="<li>";
+		o=o+stackout[c]+"</li>";
+		c++;
+		document.getElementById("output").innerHTML=document.getElementById("output").innerHTML+o;
+	}
+	
+}
+</script>
+</div>
+</body>
+</html>
