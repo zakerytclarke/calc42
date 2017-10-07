@@ -40,7 +40,7 @@ height:7.5%;
 }
 </style>
 </head> 
-<body style="background-color:white;">
+<body>
 <div style="width:100vw; height:100vh;">
 <div class="listbox">
 <ul id="output">
@@ -82,10 +82,10 @@ height:7.5%;
 <div class="row">
 <button onclick="updatecalc(this.innerHTML)" class="button">:</button>
 <button onclick="updatecalc(this.innerHTML)" class="button" style="width:48.5%;">Space</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">;</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">#</button>
 </div>
 <div class="row">
-<button onclick="updatecalc(this.innerHTML)" class="button"><</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">></button>
 <button onclick="updatecalc(this.innerHTML)" class="button">=</button>
 <button onclick="updatecalc(this.innerHTML)" class="button">></button>
 <button onclick="updatecalc(this.innerHTML)" class="button">Del</button>
@@ -98,12 +98,18 @@ var x=0;
 while(x<999){
 varmem.length++;
 varmem[x]="0";
+var mode=0;
 x++;
 }
 renderstack();
 function updatecalc(i){
 	if(isNaN(i)&&i!="."){
-		evaluate(i);
+		if(mode==0||i=="Space"||i="#"){
+			evaluate(i);
+		}else{
+			additem(i);
+			renderstack();
+		}
 	}else{ 
 		document.getElementById("input").innerHTML=document.getElementById("input").innerHTML+i;
 	}
@@ -151,6 +157,9 @@ function evaluate(i){
 		var arg1=getitem(0); 
 		document.getElementById("out").innerHTML=document.getElementById("out").innerHTML+arg1;
 		renderstack();
+	}
+	if(i=="?"){
+
 	}
 	if(i=="^"){
 		var arg1=getitem(0);
@@ -214,8 +223,16 @@ function evaluate(i){
 		additem(varmem[arg1]);
 		renderstack();	
 	}
+	if(i==":"){
+		mode=1;
+		alert("Programming Mode");
+	}
+	if(i=="#"){
+		mode=0;	
+		alert("Programming Mode Off");
+		
+	}
 	
-
 }
 function deleteitem(){
 	var c=0;
