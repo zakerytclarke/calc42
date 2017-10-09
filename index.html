@@ -17,8 +17,9 @@ font-size:30px;
 .listbox{
   border:1px solid #000;
   font-family:arial;
-  height:17%;
+  height:18%;
   width:100%;
+overflow:hidden;
 }
 ul{
   list-style:none;
@@ -104,7 +105,7 @@ x++;
 renderstack();
 function updatecalc(i){
 	if(isNaN(i)&&i!="."){
-		if(mode==0||i=="Space"||i="#"){
+		if(mode==0||i=="Space"||i=="#"){
 			evaluate(i);
 		}else{
 			additem(i);
