@@ -1,9 +1,10 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
 Calc 42
-</title>    
+</title>
 <style>
 .row{
 height:9%;
@@ -40,7 +41,7 @@ margin:0;
 height:7.5%;
 }
 </style>
-</head> 
+</head>
 <body>
 <div style="width:100vw; height:100vh;">
 <div class="listbox">
@@ -86,7 +87,7 @@ height:7.5%;
 <button onclick="updatecalc(this.innerHTML)" class="button">#</button>
 </div>
 <div class="row">
-<button onclick="updatecalc(this.innerHTML)" class="button">></button>
+<button onclick="updatecalc(this.innerHTML)" class="button"><</button>
 <button onclick="updatecalc(this.innerHTML)" class="button">=</button>
 <button onclick="updatecalc(this.innerHTML)" class="button">></button>
 <button onclick="updatecalc(this.innerHTML)" class="button">Del</button>
@@ -111,7 +112,7 @@ function updatecalc(i){
 			additem(i);
 			renderstack();
 		}
-	}else{ 
+	}else{
 		document.getElementById("input").innerHTML=document.getElementById("input").innerHTML+i;
 	}
 }
@@ -155,7 +156,7 @@ function evaluate(i){
 	}
 
 	if(i=="!"){
-		var arg1=getitem(0); 
+		var arg1=getitem(0);
 		document.getElementById("out").innerHTML=document.getElementById("out").innerHTML+arg1;
 		renderstack();
 	}
@@ -173,7 +174,7 @@ function evaluate(i){
 	if(i=="Del"){
 		document.getElementById("input").innerHTML="";
 		deleteitem();
-		renderstack();		
+		renderstack();
 	}
 	if(i=="<"){
 		var arg1=getitem(0);
@@ -197,7 +198,7 @@ function evaluate(i){
 		}else{
 			additem(0);
 		}
-		renderstack();		
+		renderstack();
 	}
 	if(i==">"){
 		var arg1=getitem(0);
@@ -209,31 +210,31 @@ function evaluate(i){
 		}else{
 			additem(0);
 		}
-		renderstack();		
+		renderstack();
 	}
 	if(i=="@"){
 		var arg1=getitem(0);
 		deleteitem();
 		var arg2=getitem(0);
 		varmem[arg1]=arg2;
-		renderstack();	
+		renderstack();
 	}
 	if(i=="$"){
 		var arg1=getitem(0);
 		deleteitem();
 		additem(varmem[arg1]);
-		renderstack();	
+		renderstack();
 	}
 	if(i==":"){
 		mode=1;
 		alert("Programming Mode");
 	}
 	if(i=="#"){
-		mode=0;	
+		mode=0;
 		alert("Programming Mode Off");
-		
+
 	}
-	
+
 }
 function deleteitem(){
 	var c=0;
@@ -265,7 +266,7 @@ function renderstack(){
 		c++;
 		document.getElementById("output").innerHTML=document.getElementById("output").innerHTML+o;
 	}
-	
+
 }
 </script>
 </div>
