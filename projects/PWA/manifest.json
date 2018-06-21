@@ -1,0 +1,21 @@
+{
+    "dir": "ltr",
+    "lang": "en",
+    "name": "Calc 42",
+    "scope": "/calc42/",
+    "display": "fullscreen",
+    "start_url": "https://zakerytclarke.github.io/calc42/",
+    "short_name": "Calc 42",
+    "theme_color": "transparent",
+    "description": "A web-based programmable postfix calculator",
+    "orientation": "portrait",
+    "background_color": "pick",
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "/images/favicon.ico",
+            "sizes": "16x16"
+        }
+    ]
+}
