@@ -1,2 +1,2 @@
-# calc42
-This is a programmable postfix calculator that I wrote.
+# calc 42
+A programmable postfix calculator
