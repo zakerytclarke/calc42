@@ -1,2 +1,2 @@
 # calc 42
-A programmable postfix calculator
+A programmable postfix calculator.
