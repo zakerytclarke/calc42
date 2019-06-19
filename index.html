@@ -41,8 +41,39 @@ margin:0;
 height:7.5%;
 }
 </style>
+
 </head>
 <body>
+<script>
+window.addEventListener('keydown', function(e) {
+  if(e.keyCode == 32 && e.target == document.body) {
+    e.preventDefault();
+  }
+});
+document.addEventListener('keyup', function (event) {
+    if (event.defaultPrevented) {
+        return;
+    }
+
+    var key = event.key || event.keyCode;
+    //console.log(key);
+    if(key==" "){
+      document.getElementById("Space").click();
+    }
+    if(key=="Enter"){
+      document.getElementById("Space").click();
+    }
+    if(key=="Backspace"){
+      document.getElementById("Delete").click();
+    }
+    if(key=="Delete"){
+      document.getElementById("Delete").click();
+    }
+    if(document.getElementById(key)!=null){
+      document.getElementById(key).click();
+    }
+});
+</script>
 <div style="width:100vw; height:100vh;">
 <div class="listbox">
 <ul id="output">
@@ -52,222 +83,48 @@ height:7.5%;
 <h1 style="" id="input">0</h1>
 <h1 style="" id ="out">> </h1>
 <div class="row">
-<button onclick="updatecalc(this.innerHTML)" class="button">!</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">?</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">@</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">$</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">Rotate</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">Swap</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">Get</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">Store</button>
 </div>
 <div class="row">
-<button onclick="updatecalc(this.innerHTML)" class="button">1</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">2</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">3</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">+</button>
+<button id="1" onclick="updatecalc(this.innerHTML)" class="button">1</button>
+<button id="2" onclick="updatecalc(this.innerHTML)" class="button">2</button>
+<button id="3" onclick="updatecalc(this.innerHTML)" class="button">3</button>
+<button id="+" onclick="updatecalc(this.innerHTML)" class="button">+</button>
 </div>
 <div class="row">
-<button onclick="updatecalc(this.innerHTML)" class="button">4</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">5</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">6</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">-</button>
+<button id="4" onclick="updatecalc(this.innerHTML)" class="button">4</button>
+<button id="5" onclick="updatecalc(this.innerHTML)" class="button">5</button>
+<button id="6" onclick="updatecalc(this.innerHTML)" class="button">6</button>
+<button id="-" onclick="updatecalc(this.innerHTML)" class="button">-</button>
 </div>
 <div class="row">
-<button onclick="updatecalc(this.innerHTML)" class="button">7</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">8</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">9</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">*</button>
+  <button id="7" onclick="updatecalc(this.innerHTML)" class="button">7</button>
+<button id="8" onclick="updatecalc(this.innerHTML)" class="button">8</button>
+<button id="9" onclick="updatecalc(this.innerHTML)" class="button">9</button>
+<button id="*" onclick="updatecalc(this.innerHTML)" class="button">*</button>
 </div>
 <div class="row">
-<button onclick="updatecalc(this.innerHTML)" class="button">.</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">0</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">^</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">/</button>
+<button id="." onclick="updatecalc(this.innerHTML)" class="button">.</button>
+<button id="0" onclick="updatecalc(this.innerHTML)" class="button">0</button>
+<button id="^" onclick="updatecalc(this.innerHTML)" class="button">^</button>
+<button id="/" onclick="updatecalc(this.innerHTML)" class="button">/</button>
 </div>
 <div class="row">
-<button onclick="updatecalc(this.innerHTML)" class="button">:</button>
-<button onclick="updatecalc(this.innerHTML)" class="button" style="width:48.5%;">Space</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">#</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">Prgm</button>
+<button id="Space" onclick="updatecalc(this.innerHTML)" class="button" style="width:48.5%;">Space</button>
+<button id="func" onclick="updatecalc(this.innerHTML)" class="button">Func</button>
 </div>
 <div class="row">
-<button onclick="updatecalc(this.innerHTML)" class="button"><</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">=</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">></button>
-<button onclick="updatecalc(this.innerHTML)" class="button">Del</button>
+<button id="<" onclick="updatecalc(this.innerHTML)" class="button"><</button>
+<button id="=" onclick="updatecalc(this.innerHTML)" class="button">=</button>
+<button id=">" onclick="updatecalc(this.innerHTML)" class="button">></button>
+<button id="Delete" onclick="updatecalc(this.innerHTML)" class="button">Del</button>
 </div>
 
-<script>
-var stackout=[];
-var varmem=[0];
-var x=0;
-while(x<999){
-varmem.length++;
-varmem[x]="0";
-var mode=0;
-x++;
-}
-renderstack();
-function updatecalc(i){
-	if(isNaN(i)&&i!="."){
-		if(mode==0||i=="Space"||i=="#"){
-			evaluate(i);
-		}else{
-			additem(i);
-			renderstack();
-		}
-	}else{
-		document.getElementById("input").innerHTML=document.getElementById("input").innerHTML+i;
-	}
-}
-function evaluate(i){
-	if(i=="Space"){
-		additem(parseFloat(document.getElementById("input").innerHTML));
-		document.getElementById("input").innerHTML="0";
-		renderstack();
-	}
-	if(i=="+"){
-		var arg1=getitem(0);
-		deleteitem();
-		var arg2=getitem(0);
-		deleteitem();
-		additem(arg1+arg2);
-		renderstack();
-	}
-	if(i=="-"){
-		var arg1=getitem(0);
-		deleteitem();
-		var arg2=getitem(0);
-		deleteitem();
-		additem(arg2-arg1);
-		renderstack();
-	}
-	if(i=="*"){
-		var arg1=getitem(0);
-		deleteitem();
-		var arg2=getitem(0);
-		deleteitem();
-		additem(arg2*arg1);
-		renderstack();
-	}
-	if(i=="/"){
-		var arg1=getitem(0);
-		deleteitem();
-		var arg2=getitem(0);
-		deleteitem();
-		additem(arg2/arg1);
-		renderstack();
-	}
-
-	if(i=="!"){
-		var arg1=getitem(0);
-		document.getElementById("out").innerHTML=document.getElementById("out").innerHTML+arg1;
-		renderstack();
-	}
-	if(i=="?"){
-
-	}
-	if(i=="^"){
-		var arg1=getitem(0);
-		deleteitem();
-		var arg2=getitem(0);
-		deleteitem();
-		additem(Math.pow(arg2,arg1));
-		renderstack();
-	}
-	if(i=="Del"){
-		document.getElementById("input").innerHTML="";
-		deleteitem();
-		renderstack();
-	}
-	if(i=="<"){
-		var arg1=getitem(0);
-		deleteitem();
-		var arg2=getitem(0);
-		deleteitem();
-		if(arg1>arg2){
-			additem(1);
-		}else{
-			additem(0);
-		}
-		renderstack();
-	}
-	if(i=="="){
-		var arg1=getitem(0);
-		deleteitem();
-		var arg2=getitem(0);
-		deleteitem();
-		if(arg1==arg2){
-			additem(1);
-		}else{
-			additem(0);
-		}
-		renderstack();
-	}
-	if(i==">"){
-		var arg1=getitem(0);
-		deleteitem();
-		var arg2=getitem(0);
-		deleteitem();
-		if(arg1<arg2){
-			additem(1);
-		}else{
-			additem(0);
-		}
-		renderstack();
-	}
-	if(i=="@"){
-		var arg1=getitem(0);
-		deleteitem();
-		var arg2=getitem(0);
-		varmem[arg1]=arg2;
-		renderstack();
-	}
-	if(i=="$"){
-		var arg1=getitem(0);
-		deleteitem();
-		additem(varmem[arg1]);
-		renderstack();
-	}
-	if(i==":"){
-		mode=1;
-		alert("Programming Mode");
-	}
-	if(i=="#"){
-		mode=0;
-		alert("Programming Mode Off");
-
-	}
-
-}
-function deleteitem(){
-	var c=0;
-	while(c<stackout.length){
-		stackout[c]=stackout[c+1];
-		c++;
-	}
-	stackout.length--;
-}
-function additem(item){
-	stackout.length++;
-	var c = stackout.length-1;
-	while(c>0){
-		stackout[c]=stackout[c-1];
-		c--;
-	}
-	stackout[0]=item;
-}
-function getitem(index){
-	return stackout[index];
-}
-function renderstack(){
-	document.getElementById("output").innerHTML="";
-	var c=0;
-	var o;
-	while(c<stackout.length){
-		o="<li>";
-		o=o+stackout[c]+"</li>";
-		c++;
-		document.getElementById("output").innerHTML=document.getElementById("output").innerHTML+o;
-	}
-
-}
+<script src="calc42.js">
 </script>
 </div>
 </body>
