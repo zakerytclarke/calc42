@@ -63,13 +63,13 @@ function evaluate(i){
 		renderstack();
 	}
 
-	if(i=="Rotate"){
+	if(i=="Rot"){
 		var arg1=getitem(0);
 		deleteitem();
 		stackout.push(arg1);
 		renderstack();
 	}
-	if(i=="Duplicate"){
+	if(i=="Dup"){
 		var arg1=getitem(0);
 		stackout.unshift(arg1);
 		renderstack();
