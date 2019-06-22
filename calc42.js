@@ -14,7 +14,7 @@ x++;
 renderstack();
 function updatecalc(i){
 	if(isNaN(i)&&i!="."){
-		if(mode==0||i=="Space"||i=="#"){
+		if(mode==0||i=="Space"||i=="Prgm"){
 			evaluate(i);
 		}else{
 			additem(i);
@@ -67,6 +67,15 @@ function evaluate(i){
 		var arg1=getitem(0);
 		deleteitem();
 		stackout.push(arg1);
+		renderstack();
+	}
+	if(i=="Duplicate"){
+		var arg1=getitem(0);
+		stackout.unshift(arg1);
+		renderstack();
+	}
+	if(i=="Pop"){
+		deleteitem();
 		renderstack();
 	}
 	if(i=="Swap"){
@@ -141,10 +150,9 @@ function evaluate(i){
 		renderstack();
 	}
 	if(i=="Prgm"){
-		console.log(mode);
 		if(mode==0){
 			mode=1;
-			//.additem("Prgm");
+			additem("Prgm");
 			renderstack();
 		}else{
 			mode=0;
@@ -156,12 +164,22 @@ function evaluate(i){
 				prgm.push(temp);
 				deleteitem();
 			}
+			prgm.pop();
+			prgm.reverse();
 			macros[fName]=prgm;
+			saveCookie("macros",macros)
+			renderstack();
 		}
 
 
 	}
-
+	if(i=="Func"){
+		if(document.getElementById("macrobox").style.display=="none"){
+			document.getElementById("macrobox").style.display="block";
+		}else{
+			document.getElementById("macrobox").style.display="none";
+		}
+	}
 }
 function deleteitem(){
 	var c=0;
@@ -193,5 +211,42 @@ function renderstack(){
 		c++;
 		document.getElementById("output").innerHTML=document.getElementById("output").innerHTML+o;
 	}
+	document.getElementById("macros").innerHTML="";
+	var c=0;
+	var o;
+	for(var key in macros){
+		o='<li onclick="runMacro(this.innerHTML)">';
+		o=o+key+"</li>";
+		document.getElementById("macros").innerHTML=document.getElementById("macros").innerHTML+o;
+	}
 
+}
+
+
+function runMacro(key){
+
+		document.getElementById("macrobox").style.display="none";
+	for(var i=0;i<macros[key].length;i++){
+		if(!isNaN(macros[key][i])){
+			additem(macros[key][i]);
+		}else{
+			evaluate(macros[key][i]);
+		}
+	}
+}
+
+if(readCookie("macros")!=null){
+	macros=readCookie(macros);
+}
+
+
+function saveCookie(name, value) {
+  var cookie = [name, '=', JSON.stringify(value), '; domain=.', window.location.host.toString(), '; path=/;'].join('');
+  document.cookie = cookie;
+}
+
+function readCookie(name) {
+ var result = document.cookie.match(new RegExp(name + '=([^;]+)'));
+ result && (result = JSON.parse(result[1]));
+ return result;
 }

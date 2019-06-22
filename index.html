@@ -19,8 +19,23 @@ font-size:30px;
   border:1px solid #000;
   font-family:arial;
   height:18%;
-  width:100%;
+  width:90%;
 overflow:hidden;
+}
+.listbox2{
+  border:1px solid #000;
+  font-family:arial;
+  height:50%;
+  width:50%;
+  position:absolute;
+  top:10vh;
+  left:25vw;
+overflow:hidden;
+background-color:white;
+}
+
+#macros{
+  font-size:3vw;
 }
 ul{
   list-style:none;
@@ -85,8 +100,8 @@ document.addEventListener('keyup', function (event) {
 <div class="row">
 <button onclick="updatecalc(this.innerHTML)" class="button">Rotate</button>
 <button onclick="updatecalc(this.innerHTML)" class="button">Swap</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">Get</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">Store</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">Duplicate</button>
+<button onclick="updatecalc(this.innerHTML)" class="button">Pop</button>
 </div>
 <div class="row">
 <button id="1" onclick="updatecalc(this.innerHTML)" class="button">1</button>
@@ -122,6 +137,18 @@ document.addEventListener('keyup', function (event) {
 <button id="=" onclick="updatecalc(this.innerHTML)" class="button">=</button>
 <button id=">" onclick="updatecalc(this.innerHTML)" class="button">></button>
 <button id="Delete" onclick="updatecalc(this.innerHTML)" class="button">Del</button>
+</div>
+
+<!--Macro  Box-->
+<div id="macrobox" style="display:none;" class="listbox2">
+  <u>
+  <h2 style="text-align:center;">
+    Functions
+  </h2>
+  </u>
+<ul id="macros">
+
+</ul>
 </div>
 
 <script src="calc42.js">
