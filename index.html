@@ -6,21 +6,33 @@
 Calc 42
 </title>
 <style>
+body{
+  background-color:#000000;
+}
 .row{
 height:9%;
 width:100%;
+margin-top:1%;
+margin-bottom:1%;
 }
 .button{
 width:24%;
 height:100%;
 font-size:30px;
+background-color:#333333;
+border-radius:3vmin;
+color:#FCFCFC;
+border:none;
 }
 .listbox{
   border:1px solid #000;
   font-family:arial;
-  height:18%;
-  width:90%;
-overflow:hidden;
+  font-size:3vmin;
+  height:20vh;
+  width:95%;
+  overflow:hidden;
+  color:white;
+  border-radius:1vmin;
 }
 .listbox2{
   border:1px solid #000;
@@ -30,8 +42,10 @@ overflow:hidden;
   position:absolute;
   top:10vh;
   left:25vw;
-overflow:hidden;
-background-color:white;
+  overflow:hidden;
+  color:#ccc;
+  background-color:#111;
+  border-radius:3vmin;
 }
 
 #macros{
@@ -39,17 +53,22 @@ background-color:white;
 }
 ul{
   list-style:none;
-  max-height:100px;
+  /*max-height:100px;*/
   margin:0;
   overflow:auto;
   padding:0;
   text-indent:10px;
 }
 li{
-  line-height:25px;
+  /*line-height:30px;*/
 }
 li:nth-child(even){
   background:#ccc;
+  color:black;
+}
+li:nth-child(odd){
+  background:#333333;
+  color:#ccc;
 }
 h1{
 margin:0;
@@ -60,6 +79,7 @@ height:7.5%;
 </head>
 <body>
 <script>
+//Key Event Listeners
 window.addEventListener('keydown', function(e) {
   if(e.keyCode == 32 && e.target == document.body) {
     e.preventDefault();
@@ -98,45 +118,45 @@ document.addEventListener('keyup', function (event) {
 <h1 style="" id="input">0</h1>
 <h1 style="" id ="out">> </h1>
 <div class="row">
-<button onclick="updatecalc(this.innerHTML)" class="button">Rot</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">Swap</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">Dup</button>
-<button onclick="updatecalc(this.innerHTML)" class="button">Pop</button>
+<button onclick="updatecalc(this.innerHTML)"  onfocus="this.blur()" class="button" style="background-color:#A5A5A5;color:black;">Swap</button>
+<button onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="background-color:#A5A5A5;color:black;">Rot</button>
+<button onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="background-color:#A5A5A5;color:black;">Pop</button>
+<button onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="background-color:#A5A5A5;color:black;">Dup</button>
 </div>
 <div class="row">
-<button id="1" onclick="updatecalc(this.innerHTML)" class="button">1</button>
-<button id="2" onclick="updatecalc(this.innerHTML)" class="button">2</button>
-<button id="3" onclick="updatecalc(this.innerHTML)" class="button">3</button>
-<button id="+" onclick="updatecalc(this.innerHTML)" class="button">+</button>
+<button id="1" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">1</button>
+<button id="2" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">2</button>
+<button id="3" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">3</button>
+<button id="+" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="background-color:#FE9500">+</button>
 </div>
 <div class="row">
-<button id="4" onclick="updatecalc(this.innerHTML)" class="button">4</button>
-<button id="5" onclick="updatecalc(this.innerHTML)" class="button">5</button>
-<button id="6" onclick="updatecalc(this.innerHTML)" class="button">6</button>
-<button id="-" onclick="updatecalc(this.innerHTML)" class="button">-</button>
+<button id="4" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">4</button>
+<button id="5" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">5</button>
+<button id="6" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">6</button>
+<button id="-" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="background-color:#FE9500">-</button>
 </div>
 <div class="row">
-  <button id="7" onclick="updatecalc(this.innerHTML)" class="button">7</button>
-<button id="8" onclick="updatecalc(this.innerHTML)" class="button">8</button>
-<button id="9" onclick="updatecalc(this.innerHTML)" class="button">9</button>
-<button id="*" onclick="updatecalc(this.innerHTML)" class="button">*</button>
+  <button id="7" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">7</button>
+<button id="8" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">8</button>
+<button id="9" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">9</button>
+<button id="*" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="background-color:#FE9500">*</button>
 </div>
 <div class="row">
-<button id="." onclick="updatecalc(this.innerHTML)" class="button">.</button>
-<button id="0" onclick="updatecalc(this.innerHTML)" class="button">0</button>
-<button id="^" onclick="updatecalc(this.innerHTML)" class="button">^</button>
-<button id="/" onclick="updatecalc(this.innerHTML)" class="button">/</button>
+<button id="." onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">.</button>
+<button id="0" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">0</button>
+<button id="^" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="background-color:#FE9500">^</button>
+<button id="/" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="background-color:#FE9500">/</button>
 </div>
 <div class="row">
-<button onclick="updatecalc(this.innerHTML)" class="button">Prgm</button>
-<button id="Space" onclick="updatecalc(this.innerHTML)" class="button" style="width:48.5%;">Space</button>
-<button id="func" onclick="updatecalc(this.innerHTML)" class="button">Func</button>
+<button onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">Prgm</button>
+<button id="Space" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="width:48.5%;">Enter</button>
+<button id="func" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">Func</button>
 </div>
 <div class="row">
-<button id="<" onclick="updatecalc(this.innerHTML)" class="button"><</button>
-<button id="=" onclick="updatecalc(this.innerHTML)" class="button">=</button>
-<button id=">" onclick="updatecalc(this.innerHTML)" class="button">></button>
-<button id="Delete" onclick="updatecalc(this.innerHTML)" class="button">Del</button>
+<button id="<" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button"><</button>
+<button id="=" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">=</button>
+<button id=">" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">></button>
+<button id="Delete" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">Del</button>
 </div>
 
 <!--Macro  Box-->

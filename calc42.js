@@ -1,4 +1,4 @@
-var stackout=[];
+var stackout=[0,0];
 
 var macros={};
 
@@ -14,7 +14,7 @@ x++;
 renderstack();
 function updatecalc(i){
 	if(isNaN(i)&&i!="."){
-		if(mode==0||i=="Space"||i=="Prgm"){
+		if(mode==0||i=="Enter"||i=="Prgm"){
 			evaluate(i);
 		}else{
 			additem(i);
@@ -25,7 +25,7 @@ function updatecalc(i){
 	}
 }
 function evaluate(i){
-	if(i=="Space"){
+	if(i=="Enter"){
 		additem(parseFloat(document.getElementById("input").innerHTML));
 		document.getElementById("input").innerHTML="0";
 		renderstack();
@@ -167,7 +167,7 @@ function evaluate(i){
 			prgm.pop();
 			prgm.reverse();
 			macros[fName]=prgm;
-			saveCookie("macros",macros)
+			//saveCookie("macros",macros)
 			renderstack();
 		}
 
@@ -234,11 +234,11 @@ function runMacro(key){
 		}
 	}
 }
-
+/*
 if(readCookie("macros")!=null){
 	macros=readCookie(macros);
 }
-
+*/
 
 function saveCookie(name, value) {
   var cookie = [name, '=', JSON.stringify(value), '; domain=.', window.location.host.toString(), '; path=/;'].join('');
