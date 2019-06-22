@@ -33,6 +33,7 @@ border:none;
   overflow:hidden;
   color:white;
   border-radius:1vmin;
+  margin-bottom:10px;
 }
 .listbox2{
   border:1px solid #000;
@@ -73,6 +74,7 @@ li:nth-child(odd){
 h1{
 margin:0;
 height:7.5%;
+color:#ccc;
 }
 </style>
 
@@ -115,13 +117,13 @@ document.addEventListener('keyup', function (event) {
 
 </ul>
 </div>
-<h1 style="" id="input">0</h1>
-<h1 style="" id ="out">> </h1>
+<h1 id="input">0</h1>
+<!--<h1 id ="out">> </h1>-->
 <div class="row">
 <button onclick="updatecalc(this.innerHTML)"  onfocus="this.blur()" class="button" style="background-color:#A5A5A5;color:black;">Swap</button>
 <button onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="background-color:#A5A5A5;color:black;">Rot</button>
-<button onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="background-color:#A5A5A5;color:black;">Pop</button>
 <button onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="background-color:#A5A5A5;color:black;">Dup</button>
+<button onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="background-color:#A5A5A5;color:black;">Pop</button>
 </div>
 <div class="row">
 <button id="1" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">1</button>
