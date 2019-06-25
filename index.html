@@ -82,6 +82,17 @@
 </head>
 <body>
   <script>
+
+  //Function Toggle
+  function toggleFunc(){
+    if(document.getElementById("macrobox").style.display=="none"){
+      document.getElementById("macrobox").style.display="block";
+    }else{
+      document.getElementById("macrobox").style.display="none";
+    }
+
+  }
+
   //Key Event Listeners
   window.addEventListener('keydown', function(e) {
     if(e.keyCode == 32 && e.target == document.body) {
@@ -118,7 +129,7 @@
 
     </ul>
   </div>
-  <h1 id="input">0</h1>
+  <h1 id="input"></h1>
   <!--<h1 id ="out">> </h1>-->
   <div class="row">
     <button onclick="updatecalc(this.innerHTML)"  onfocus="this.blur()" class="button" style="background-color:#A5A5A5;color:black;">Swap</button>
@@ -147,18 +158,18 @@
   <div class="row">
     <button id="." onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">.</button>
     <button id="0" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">0</button>
-    <button id="^" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="background-color:#FE9500">^</button>
+    <button id="^" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="background-color:#FE9500">+/-</button>
     <button id="/" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="background-color:#FE9500">/</button>
   </div>
   <div class="row">
     <button onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">Prgm</button>
     <button id="Space" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="width:48.5%;">Enter</button>
-    <button id="func" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">Func</button>
+    <button id="func" onclick="toggleFunc()" onfocus="this.blur()" class="button">Func</button>
   </div>
   <div class="row">
-    <button id="<" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button"><</button>
-    <button id="=" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">=</button>
-    <button id=">" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">></button>
+    <button id="<" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">^</button>
+    <button id="=" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">sqrt</button>
+    <button id=">" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">log</button>
     <button id="Delete" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">Del</button>
   </div>
 
