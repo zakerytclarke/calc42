@@ -167,20 +167,20 @@
     <button id="func" onclick="toggleFunc()" onfocus="this.blur()" class="button">Func</button>
   </div>
   <div class="row">
-    <button id="<" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">^</button>
+    <button id="<" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">^2</button>
     <button id="=" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">sqrt</button>
-    <button id=">" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">log</button>
+    <button id=">" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">^</button>
     <button id="Delete" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">Del</button>
   </div>
 
   <!--Macro  Box-->
-  <div id="macrobox" style="display:none;" class="listbox2">
+  <div id="macrobox" style="display:none;height:80vh;" class="listbox2">
     <u>
-      <h2 style="text-align:center;">
+      <h2 style="text-align:center;font-size:6vmin">
         Functions
       </h2>
     </u>
-    <ul id="macros">
+    <ul id="macros" style="overflow-y:scroll;">
 
     </ul>
   </div>

@@ -172,6 +172,14 @@ function evaluate(i){
 		additem(Math.pow(arg2,arg1));
 		renderstack();
 	}
+	if(i=="^2"){
+		var arg1=getitem(0);
+		deleteitem();
+		var arg2=getitem(0);
+		deleteitem();
+		additem(Math.pow(arg2,arg1));
+		renderstack();
+	}
 	if(i=="Del"){
 		document.getElementById("input").innerHTML="";
 		deleteitem();
