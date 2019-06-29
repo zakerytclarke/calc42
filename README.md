@@ -1,2 +1,3 @@
-# calc 42
-A programmable postfix calculator.
+# Stack Calculator
+
+A Programmable Postfix Calculator
