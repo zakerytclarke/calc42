@@ -6,79 +6,9 @@
     Stack Calc
   </title>
   <style>
-  body{
-    background-color:#000000;
-  }
-  .row{
-    height:9%;
-    width:100%;
-    margin-top:1%;
-    margin-bottom:1%;
-  }
-  .button{
-    width:24%;
-    height:100%;
-    font-size:30px;
-    background-color:#333333;
-    border-radius:3vmin;
-    color:#FCFCFC;
-    border:none;
-  }
-  .listbox{
-    border:1px solid #000;
-    font-family:arial;
-    font-size:7vmin;
-    height:15vh;
-    width:95%;
-    overflow:hidden;
-    color:white;
-    border-radius:1vmin;
-    margin-bottom:10px;
-  }
-  .listbox2{
-    border:1px solid #000;
-    font-family:arial;
-    height:50%;
-    width:50%;
-    font-size:7vmin;
-    position:absolute;
-    top:10vh;
-    left:25vw;
-    overflow:hidden;
-    color:#ccc;
-    background-color:#111;
-    border-radius:3vmin;
-  }
 
-  #macros{
-    font-size:7vmin;
-  }
-  ul{
-    list-style:none;
-    /*max-height:100px;*/
-    margin:0;
-    overflow:auto;
-    padding:0;
-    text-indent:10px;
-  }
-  li{
-    /*line-height:30px;*/
-  }
-  li:nth-child(even){
-    background:#ccc;
-    color:black;
-  }
-  li:nth-child(odd){
-    background:#333333;
-    color:#ccc;
-  }
-  h1{
-    margin:0;
-    height:7.5%;
-    color:#ccc;
-  }
 </style>
-
+<link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
   <script>
@@ -131,48 +61,38 @@
   </div>
   <h1 id="input"></h1>
   <!--<h1 id ="out">> </h1>-->
-  <div class="row">
-    <button onclick="updatecalc(this.innerHTML)"  onfocus="this.blur()" class="button" style="background-color:#A5A5A5;color:black;">Swap</button>
-    <button onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="background-color:#A5A5A5;color:black;">Rot</button>
-    <button onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="background-color:#A5A5A5;color:black;">Dup</button>
-    <button onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="background-color:#A5A5A5;color:black;">Pop</button>
-  </div>
-  <div class="row">
-    <button id="1" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">1</button>
-    <button id="2" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">2</button>
-    <button id="3" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">3</button>
-    <button id="+" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="background-color:#FE9500">+</button>
-  </div>
-  <div class="row">
-    <button id="4" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">4</button>
-    <button id="5" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">5</button>
-    <button id="6" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">6</button>
-    <button id="-" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="background-color:#FE9500">-</button>
-  </div>
-  <div class="row">
-    <button id="7" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">7</button>
-    <button id="8" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">8</button>
-    <button id="9" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">9</button>
-    <button id="*" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="background-color:#FE9500">*</button>
-  </div>
-  <div class="row">
-    <button id="." onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">.</button>
-    <button id="0" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">0</button>
-    <button id="^" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="background-color:#FE9500">+/-</button>
-    <button id="/" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="background-color:#FE9500">/</button>
-  </div>
-  <div class="row">
-    <button onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">Prgm</button>
-    <button id="Space" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button" style="width:48.5%;">Enter</button>
-    <button id="func" onclick="toggleFunc()" onfocus="this.blur()" class="button">Func</button>
-  </div>
-  <div class="row">
-    <button id="<" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">^2</button>
-    <button id="=" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">sqrt</button>
-    <button id=">" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">^</button>
-    <button id="Delete" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" class="button">Del</button>
-  </div>
+    <button onclick="updatecalc(this.innerHTML)"  onfocus="this.blur()"  style="background-color:#A5A5A5;color:black;">Swap</button>
+    <button onclick="updatecalc(this.innerHTML)" onfocus="this.blur()"  style="background-color:#A5A5A5;color:black;">Rot</button>
+    <button onclick="updatecalc(this.innerHTML)" onfocus="this.blur()"  style="background-color:#A5A5A5;color:black;">Dup</button>
+    <button onclick="updatecalc(this.innerHTML)" onfocus="this.blur()"  style="background-color:#A5A5A5;color:black;">Pop</button>
+    <button id="1" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" >1</button>
+    <button id="2" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" >2</button>
+    <button id="3" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" >3</button>
+    <button id="+" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()"  style="background-color:#FE9500">+</button>
+    <button id="4" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" >4</button>
+    <button id="5" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" >5</button>
+    <button id="6" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" >6</button>
+    <button id="-" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()"  style="background-color:#FE9500">-</button>
+    <button id="7" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" >7</button>
+    <button id="8" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" >8</button>
+    <button id="9" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" >9</button>
+    <button id="*" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()"  style="background-color:#FE9500">*</button>
+    <button id="." onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" >.</button>
+    <button id="0" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" >0</button>
+    <button id="^" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()"  style="background-color:#FE9500">+/-</button>
+    <button id="/" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()"  style="background-color:#FE9500">/</button>
+    <button onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" >Prgm</button>
+    <button id="Space" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()"  style="width:48.5%;">Enter</button>
+    <button id="func" onclick="toggleFunc()" onfocus="this.blur()"  style="margin-bottom:5vh;">Del</button>
+<!--
+    <button id="<" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" >^2</button>
+    <button id="=" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" >sqrt</button>
+    <button id=">" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" >^</button>
+    <button id="Delete" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" >Del</button>
+-->
+    <span id="macrobox">
 
+    </span>
   <!--Macro  Box-->
   <div id="macrobox" style="display:none;height:80vh;" class="listbox2">
     <u>

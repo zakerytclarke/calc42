@@ -53,7 +53,6 @@ function updatecalc(i){
 				runMacro(i);
 				renderstack();
 			}else{
-				document.getElementById("macrobox").style.display="none";
 				evaluate(i);
 			}
 		}else{
@@ -374,11 +373,13 @@ function evaluate(i){
 			}
 			prgm.pop();
 			prgm.reverse();
-			macros[fName]=prgm;
-			//saveCookie("macros",macros)
+			if(fName!=""&&fName!=null){
+				macros[fName]=prgm;
+			}
+			setCookie("macros",macros)
 			renderstack();
 		}
-		console.log(macros[i]);
+		//console.log(macros[i]);
 		if(macros[i]!=null){
 			runMacro(i);
 		}
@@ -418,9 +419,9 @@ function renderstack(){
 		c++;
 		document.getElementById("output").innerHTML=document.getElementById("output").innerHTML+o;
 	}
-	document.getElementById("macros").innerHTML="";
-	var c=0;
-	var o;
+
+	document.getElementById("macrobox").innerHTML="";
+
 	var keys=[];
 	for(var key in macros){
 		keys.push(key);
@@ -428,18 +429,19 @@ function renderstack(){
 	//Display Alphabetical
 	keys.sort();
 	for(var i=0;i<keys.length;i++){
-		var key=keys[i];
-		o='<li onclick="updatecalc(this.innerHTML)">';
-		o=o+key+"</li>";
-		document.getElementById("macros").innerHTML=document.getElementById("macros").innerHTML+o;
+
+		document.getElementById("macrobox").innerHTML+="<button id='Delete' onclick='updatecalc(this.innerHTML)' onfocus='this.blur()' class='button' style='background-color:#A5A5A5;color:black;'>"+keys[i]+`</button>
+    `;
 	}
+
+
+
 
 }
 
 
 function runMacro(key){
 
-	document.getElementById("macrobox").style.display="none";
 	for(var i=0;i<macros[key].length;i++){
 		if(!isNaN(macros[key][i])){
 			additem(macros[key][i]);
@@ -448,19 +450,37 @@ function runMacro(key){
 		}
 	}
 }
-/*
-if(readCookie("macros")!=null){
-macros=readCookie(macros);
-}
-*/
 
-function saveCookie(name, value) {
-	var cookie = [name, '=', JSON.stringify(value), '; domain=.', window.location.host.toString(), '; path=/;'].join('');
-	document.cookie = cookie;
+if(getCookie("macros")!=""){
+macros=getCookie(macros);
+renderstack();
 }
 
-function readCookie(name) {
-	var result = document.cookie.match(new RegExp(name + '=([^;]+)'));
-	result && (result = JSON.parse(result[1]));
-	return result;
+
+
+//https://www.w3schools.com/js/js_cookies.asp
+function setCookie(cname, cvalue, exdays) {
+	if(exdays==null){
+		exdays=100000;
+	}
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
 }
