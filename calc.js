@@ -70,9 +70,14 @@ function updatecalc(i){
 }
 function evaluate(i){
 	if(i=="Enter"){
-		additem(parseFloat(document.getElementById("input").innerHTML));
-		document.getElementById("input").innerHTML="";
-		renderstack();
+		if(
+			document.getElementById("input").innerHTML!=""&&
+			document.getElementById("input").innerHTML!="-")
+			{
+			additem(parseFloat(document.getElementById("input").innerHTML));
+			document.getElementById("input").innerHTML="";
+			renderstack();
+		}
 	}
 	if(i=="+"){
 		var arg1=getitem(0);
