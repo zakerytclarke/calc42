@@ -3,35 +3,51 @@ var stackout=[];
 var macros={};
 
 //Built in Functions
-macros["Quadratic"]=["Swap","Dup"];
+macros["Quad"]=["Swap","Dup","-1","*","Rot","Rot","Rot","Dup","2","*","Rot","Rot","Swap","Dup","2","Pow","Rot","Rot","Rot","Swap","Rot","-4","*","*","+","sqrt","Swap","Pop","Swap","Pop","Dup","Rot","Rot","Dup","Rot","Rot","Dup","Rot","Rot","Rot","Swap","+","Rot","Swap","Rot","Rot","Rot","Rot","/","Rot","Swap","Rot","Swap","-","Swap","Rot","/"];
 
 
 macros["Abs"]=["abs"];
 
-macros["Random"]=["random"];
+macros["Rnd"]=["random"];
 
 macros["Round"]=["round"];
 macros["Floor"]=["floor"];
-macros["Ceiling"]=["ceiling"];
+macros["Ceil"]=["ceiling"];
 
 macros["Tau"]=["#tau"];
 macros["Pi"]=["#pi"];
 macros["E"]=["#e"];
 
 
-macros["sin(deg)"]=["#sin(deg)"];
-macros["cos(deg)"]=["#cos(deg)"];
-macros["tan(deg)"]=["#tan(deg)"];
+macros["sin"]=["#sin(rad)"];
+macros["cos"]=["#cos(rad)"];
+macros["tan"]=["#tan(rad)"];
 
-macros["sin(rad)"]=["#sin(rad)"];
-macros["cos(rad)"]=["#cos(rad)"];
-macros["tan(rad)"]=["#tan(rad)"];
+macros["sin\xB0"]=["#sin(deg)"];
+macros["cos\xB0"]=["#cos(deg)"];
+macros["tan\xB0"]=["#tan(deg)"];
 
 macros["ln"]=["#ln"];
 macros["log"]=["#log"];
 macros["sqrt"]=["#sqrt"];
 macros["Power"]=["^"];
 
+
+const setCookie = (name, value, days = 7, path = '/') => {
+  const expires = new Date(Date.now() + days * 864e5).toUTCString()
+  document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=' + path
+}
+
+const getCookie = (name) => {
+  return document.cookie.split('; ').reduce((r, v) => {
+    const parts = v.split('=')
+    return parts[0] === name ? decodeURIComponent(parts[1]) : r
+  }, '')
+}
+
+const deleteCookie = (name, path) => {
+  setCookie(name, '', -1, path)
+}
 
 
 var negative=false;
@@ -185,8 +201,9 @@ function evaluate(i){
 		renderstack();
 	}
 	if(i=="Del"){
-		document.getElementById("input").innerHTML="";
-		deleteitem();
+		document.getElementById("input").innerHTML=document.getElementById("input").innerHTML.substring(0,document.getElementById("input").innerHTML.length-1);
+		//document.getElementById("input").innerHTML="";
+		//deleteitem();
 		renderstack();
 	}
 	if(i=="<"){
@@ -267,7 +284,7 @@ function evaluate(i){
 		}
 	}
 
-	if(i=="ceil"){
+	if(i=="ceiling"){
 		var arg1=getitem(0);
 		if(stackout.length>=1&&arg1!="if"){
 			deleteitem();
@@ -376,7 +393,7 @@ function evaluate(i){
 			if(fName!=""&&fName!=null){
 				macros[fName]=prgm;
 			}
-			setCookie("macros",macros)
+			setCookie("macros",JSON.stringify(macros))
 			renderstack();
 		}
 		//console.log(macros[i]);
@@ -452,19 +469,20 @@ function runMacro(key){
 }
 
 if(getCookie("macros")!=""){
-macros=getCookie(macros);
+macros=JSON.parse(getCookie(macros));
 renderstack();
 }
 
 
 
 //https://www.w3schools.com/js/js_cookies.asp
+/*
 function setCookie(cname, cvalue, exdays) {
 	if(exdays==null){
 		exdays=100000;
 	}
   var d = new Date();
-  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));//Forever
   var expires = "expires="+ d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
@@ -484,3 +502,4 @@ function getCookie(cname) {
   }
   return "";
 }
+*/
