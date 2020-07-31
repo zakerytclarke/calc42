@@ -469,9 +469,10 @@ function runMacro(key){
 }
 
 if(getCookie("macros")!=""){
-macros=JSON.parse(getCookie(macros));
+macros=JSON.parse(getCookie("macros"));
 renderstack();
 }
+
 
 
 
