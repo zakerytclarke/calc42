@@ -25,7 +25,8 @@ button{
   font-size:7vmin;
   height:15vh;
   width:95%;
-  overflow:hidden;
+  overflow-x:hidden;
+  overflow-y:scroll;
   color:white;
   border-radius:1vmin;
   margin-bottom:10px;
