@@ -31,6 +31,7 @@ macros["ln"]=["#ln"];
 macros["log"]=["#log"];
 macros["sqrt"]=["#sqrt"];
 macros["Power"]=["^"];
+macros["LRot"]=["#lrot"];
 
 
 const setCookie = (name, value, days = 7, path = '/') => {
@@ -289,6 +290,16 @@ function evaluate(i){
 		if(stackout.length>=1&&arg1!="if"){
 			deleteitem();
 			additem(Math.ceil(arg1));
+		}
+	}
+
+	if(i=="#lrot"){
+		var arg1=stackout[stackout.length-1];
+
+		if(stackout.length>=2&&arg1!="if"){
+			stackout.pop();
+			stackout.unshift(arg1);
+			renderstack();
 		}
 	}
 
