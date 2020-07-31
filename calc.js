@@ -3,7 +3,7 @@ var stackout=[];
 var macros={};
 
 //Built in Functions
-macros["Quad"]=["Swap","Dup","-1","*","Rot","Rot","Rot","Dup","2","*","Rot","Rot","Swap","Dup","2","Pow","Rot","Rot","Rot","Swap","Rot","-4","*","*","+","sqrt","Swap","Pop","Swap","Pop","Dup","Rot","Rot","Dup","Rot","Rot","Dup","Rot","Rot","Rot","Swap","+","Rot","Swap","Rot","Rot","Rot","Rot","/","Rot","Swap","Rot","Swap","-","Swap","Rot","/"];
+macros["Quad"]=["Swap","Dup","Rot","-1","*","Rot","Swap","Dup","2","*","Rot","-4","*","*","Swap","2","^","+","sqrt","Dup","Rot","Swap","Dup","Rot","+","#lrot","#lrot","-","#lrot","Dup","Rot","/","Rot","Swap","/"];
 
 
 macros["Abs"]=["abs"];
