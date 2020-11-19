@@ -55,10 +55,10 @@ var negative=false;
 
 var varmem=[0];
 var x=0;
+var mode=0;
 while(x<999){
 	varmem.length++;
 	varmem[x]="0";
-	var mode=0;
 
 	x++;
 }
@@ -72,8 +72,12 @@ function updatecalc(i){
 			}else{
 				evaluate(i);
 			}
-		}else{
-			additem(i);
+		}else{//Programming Mode
+      if(i=="Del"){
+        deleteitem();
+      }else{
+        additem(i);
+      }
 			renderstack();
 		}
 	}else{

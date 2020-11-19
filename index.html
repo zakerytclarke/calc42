@@ -46,7 +46,7 @@
       document.getElementById("Delete").click();
     }
     if(key=="Delete"){
-      document.getElementById("Delete").click();
+      document.getElementById("Pop").click();
     }
     if(document.getElementById(key)!=null){
       document.getElementById(key).click();
@@ -64,7 +64,7 @@
     <button onclick="updatecalc(this.innerHTML)"  onfocus="this.blur()"  style="background-color:#A5A5A5;color:black;">Swap</button>
     <button onclick="updatecalc(this.innerHTML)" onfocus="this.blur()"  style="background-color:#A5A5A5;color:black;">Rot</button>
     <button onclick="updatecalc(this.innerHTML)" onfocus="this.blur()"  style="background-color:#A5A5A5;color:black;">Dup</button>
-    <button onclick="updatecalc(this.innerHTML)" onfocus="this.blur()"  style="background-color:#A5A5A5;color:black;">Pop</button>
+    <button id="Pop" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()"  style="background-color:#A5A5A5;color:black;">Pop</button>
     <button id="1" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" >1</button>
     <button id="2" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" >2</button>
     <button id="3" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" >3</button>
@@ -83,7 +83,7 @@
     <button id="/" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()"  style="background-color:#FE9500">/</button>
     <button onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" >Prgm</button>
     <button id="Space" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()"  style="width:48.5%;">Enter</button>
-    <button onclick="updatecalc(this.innerHTML)" onfocus="this.blur()"  style="margin-bottom:5vh;">Del</button>
+    <button id="Delete" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()"  style="margin-bottom:5vh;">Del</button>
 <!--
     <button id="<" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" >^2</button>
     <button id="=" onclick="updatecalc(this.innerHTML)" onfocus="this.blur()" >sqrt</button>
